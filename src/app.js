@@ -35,6 +35,20 @@ app.register(require('./routes/admin/upload'))
 app.register(require('./routes/admin/orders'))
 app.register(require('./routes/orders'), { prefix: '/api/orders' })
 
-app.get('/health', async () => ({ status: 'ok' }))
+app.get('/health', async () => ({
+  status: 'ok',
+  uptime: process.uptime(),
+  timestamp: new Date().toISOString(),
+}))
+
+app.get('/health/db', async (request, reply) => {
+  try {
+    await app.prisma.$queryRaw`SELECT 1`
+    return { status: 'ok', timestamp: new Date().toISOString() }
+  } catch (err) {
+    reply.status(503)
+    return { status: 'error', message: err.message, timestamp: new Date().toISOString() }
+  }
+})
 
 module.exports = app

@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm init *)",
+      "Bash(npm install *)",
+      "Bash(npx prisma *)",
+      "Bash(node src/server.js)",
+      "Bash(curl -s http://localhost:3000/health)",
+      "Bash(pkill -f \"node src/server.js\")",
+      "Bash(curl -s -X POST http://localhost:3000/api/auth/register -H 'Content-Type: application/json' -d '{\"email\":\"test@example.com\",\"password\":\"secret123\",\"name\":\"Test User\"}')",
+      "Bash(docker exec my-postgres *)",
+      "Bash(git init *)",
+      "Bash(git remote *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)"
+    ]
+  }
+}
